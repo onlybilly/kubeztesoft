@@ -83,7 +83,7 @@ spec:
         # host.
         - name: calico-node
           #image: quay.io/calico/node:v2.6.5
-          image: calico/node:v2.6.5
+          image: 10.45.59.250/k8s/calico-node
           env:
             # The location of the Calico etcd cluster.
             - name: ETCD_ENDPOINTS
@@ -180,7 +180,7 @@ spec:
         # and CNI network config file on each node.
         - name: install-cni
           #image: quay.io/calico/cni:v1.11.2
-          image: calico/cni:v1.11.2
+          image: 10.45.59.250/k8s/calico-cni
           command: ["/install-cni.sh"]
           env:
             # The location of the Calico etcd cluster.
@@ -260,7 +260,7 @@ spec:
       containers:
         - name: calico-kube-controllers
           #image: quay.io/calico/kube-controllers:v1.0.2
-          image: calico/kube-controllers:v1.0.2
+          image: 10.45.59.250/k8s/calico-kube-controllers
           env:
             # The location of the Calico etcd cluster.
             - name: ETCD_ENDPOINTS
