@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-resweb-svc
+  labels:
+    app: resweb
+spec:
+  type: LoadBalancer
+  sessionAffinity: ClientIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 33333
+  selector:
+    app: resweb
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: my-resweb-dep
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: resweb
+    spec:
+      containers:
+      - name: resweb1219
+        image: 10.45.59.250/rescenter/res20171229
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2100Mi
+          limits:
+            cpu: 800m
+            memory: 2400Mi
+
